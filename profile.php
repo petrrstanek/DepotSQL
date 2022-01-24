@@ -41,7 +41,6 @@ if (!isset($_SESSION['loggedin'])) {
 							Odhlásit
 						</a>
 					</li>
-
 				</ul>
 			</div>
 		</div>
@@ -84,7 +83,8 @@ echo "Failed connect " . mysqli_connect_errno();
 }
 
 $record_user = mysqli_query($conn, "SELECT * FROM resources WHERE id={$_SESSION['id']}");
-echo"<table>
+echo"<div class='container'><div class='profile-t'><table class='profile-t-style'>
+<tr style='position:sticky; top: 0; background-color: #5794cc;'>
 <th> ID_záznamu</th>
 <th> ID_uživatele</th>
 <th>Celé jméno</th>
@@ -95,7 +95,6 @@ echo"<table>
 
 while($row = mysqli_fetch_array($record_user)){
 	echo "<tr>";
-
 	echo "<td>" . $row['id_record'] . "</td>";
 	echo "<td>"  . $row['id'] . "</td>";
 	echo "<td>" . $row['full_name_emp'] . "</td>";
@@ -103,6 +102,6 @@ while($row = mysqli_fetch_array($record_user)){
 	echo "<td>" . number_format($row['quantity_item'], '0',',','.' . "ks" . "</td>");
 	echo "<td>" . $row['date_added'] . "</td>";
 }
-echo "</table>"
+echo "</table></div></div>"
 
 ?>

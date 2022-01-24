@@ -77,13 +77,13 @@ let dateTime = `${date} ${time}`;
 
       //Zakázat vstup pro datum
       const field = document.getElementById('date');
-      field.setAttribute('value', dateTime)
+      field.setAttribute('value', date)
       field.disabled = true;
 
 
       //Zakázat vstup pro datum2
       const fieldRemove = document.getElementById('date-remove')
-      fieldRemove.setAttribute('value', dateTime);
+      fieldRemove.setAttribute('value', date);
       fieldRemove.disabled = true;
 
 

@@ -5,8 +5,12 @@
 <head>
 	<meta http-equiv="Cache-control" content="no-cache">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="bootstrap.css">
 	<link rel="stylesheet" href="style.css">
+	<!-- JavaScript Bundle with Popper -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
 
 	<title>DASHBOARD</title>
 </head>
@@ -33,7 +37,7 @@ $email = $_SESSION['email'];
 	<nav class="navbar navbar-expand-sm navbar-light bg-light">
 		<div class="container">
 			<a href="home.php" class="navbar-brand">Sklad Depot s.r.o</a>
-			<button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarCollapse">
@@ -131,7 +135,7 @@ $email = $_SESSION['email'];
 					<option value="Mramor">Mramor</option>
 					<option value="Olovo">Olovo</option>
 					<option value="Železo">Železo</option>
-					<option value="Hlíník">Hliník</option>
+					<option value="Hliník">Hliník</option>
 				</select></br>
 				Počet Kusů: <br/>
 				<input type="number" max="0" name="quantity_item" id="quan" placeholder="Zadej mínusovou hodnotu"></br>
@@ -140,7 +144,7 @@ $email = $_SESSION['email'];
 				<input type="text" name="date_added" value="" id="date-remove"></br>
 				<button type="sumbit" value="Vložit" id="remove" style="width:100%"> Odebrat</button>
 				</br>
-				<span class="cur time"></span>
+
 			</form>
 		</div>
 	</div>

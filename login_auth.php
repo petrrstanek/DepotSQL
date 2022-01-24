@@ -1,5 +1,5 @@
 <?php
-include('connection.php');
+include('conn.php');
 session_start();
 $db_host = "localhost";
 $db_username = "root";

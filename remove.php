@@ -3,6 +3,7 @@
 <head>
 	<meta http-equiv="Cache-control" content="no-cache">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="bootstrap.css">
 	<link rel="stylesheet" href="style.css">
 	<title>Remove a Item</title>
@@ -51,7 +52,7 @@ $id = $_SESSION['id'];
 $full_name_emp = $_SESSION['fname'] . " " . $_SESSION['lname'];
 $name_item = $_REQUEST['name_item'];
 $quantity_item = $_REQUEST['quantity_item'];
-$datum = date("Y-m-d H:i:s");
+$datum = date("d-m-Y H:i:s");
 
 $_SESSION['fullname'] = $full_name_emp;
 $_SESSION['nameitem'] = $name_item;
@@ -73,6 +74,16 @@ while ($row = mysqli_fetch_array($summary)) {
 	if ($arrayitem === $name_item) {
 		if ($arraysum <= 0) {
 			echo "<h1 class='whitening pad'>Bohužel ve skladu není dostatek položek</h1>";
+			echo "
+<div class='btn-neg-val'>
+<a href='home.php' style='padding-right: 50px'>
+<button class='trigg'>Dashboard</button>
+</a>
+<a href='#'><button class='trigg'>Odebrat znovu</button>
+</a>
+</div>
+
+";
 		} else {
 
 		 /* Vložení do databaze */
@@ -82,12 +93,33 @@ while ($row = mysqli_fetch_array($summary)) {
   Úspěšně jste odebrali položku:
   </h1>";
 //RECAP
-			 echo nl2br("\n 
-	<div class='container pad text-center'>
-  <p class='whitening'>Vaše jméno: $full_name_emp</p> \n 
-  <p class='whitening'>Odebraný materiál: $name_item</p> \n"
-				  . "<p class='whitening'>Počet: $quantity_item</p> \n 
-    <p class='whitening'>Kdy: $datum</p></div> \n");
+			 echo "
+<div class='container'>
+	<div class='center-center'>
+		<div class='row'>
+			<div class='col-md-12 text-white text-center'>
+				Vaše jméno: $full_name_emp</br>
+ 				Odebraný materiál: $name_item</br>
+				Počet: $quantity_item</br>
+  		  Kdy: $datum
+			</div>
+		</div>
+		<div class='row'>
+			<div class='col-md-12'>
+				<a href='home.php'>
+   			 	<button class='trigg'>Dashboard</button>
+				</a>
+				<a href='#'>
+					<button class='trigg'>Odebrat další položku</button>
+				</a>
+				<a href='reset.php'>
+					<button class='trigg'>Vrátit krok</button>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+";
 		 } else {
 			 echo "ERROR: Hush sorry $sql."
 				  . mysqli_error($conn);
@@ -98,23 +130,26 @@ while ($row = mysqli_fetch_array($summary)) {
 
 mysqli_close($conn);
 ?>
-
+<!--
 <div class="container">
 	<div class="row">
-		<div class="col-md-6">
-			Jméno: <?=$_SESSION['fullname'];?> </br>
-			Položka: <?=$_SESSION['nameitem'];?></br>
-			Počet: <?=$_SESSION['quan'];?></br>
-			Datum: <?=$_SESSION['date'];?></br>
+		<div class="col-md-12 text-white text-center">
+			Jméno: <?/*=$_SESSION['fullname'];*/?> </br>
+			Položka: <?/*=$_SESSION['nameitem'];*/?></br>
+			Počet: <?/*=$_SESSION['quan'];*/?></br>
+			Datum: <?/*=$_SESSION['date'];*/?></br>
 		</div>
-		<div class="col-md-6 d-flex flex-column">
-			<button onclick="location.href='home.php'">DASHBOARD</button>
-			<button onclick="location.href='form.php'">Odebrat další položku</button>
-			<button onclick="location.href='reset.php'">Reset</button>
+	</div>
+
+	<div class="row">
+		<div class="col-md-12">
+			<button class='trigg' onclick="location.href='home.php'">DASHBOARD</button>
+			<button class='trigg' onclick="location.href='form.php'">Odebrat další položku</button>
+			<button class='trigg' onclick="location.href='reset.php'">Reset</button>
 		</div>
 	</div>
 </div>
-
+-->
 
 <script src="https://kit.fontawesome.com/09be11f3c3.js" crossorigin="anonymous"></script>
 </body>

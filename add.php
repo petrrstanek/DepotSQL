@@ -3,8 +3,10 @@
 <head>
 	<meta http-equiv="Cache-control" content="no-cache">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="bootstrap.css">
 	<link rel="stylesheet" href="style.css">
+
 	<title>Add a Item</title>
 </head>
 <body>
@@ -79,25 +81,25 @@ $_SESSION['date'] = $datum;
 			 . mysqli_error($conn);
 	}
 
-
-
-
 mysqli_close($conn);
 ?>
 <div class="container">
-	<div class="row">
-		<div class="col-md-12 text-white text-center">
-		Jméno: <strong><?=$_SESSION['fullname'];?></strong> </br>
-		Položka: <strong><?=$_SESSION['nameitem'];?></strong> </br>
-		Počet: <strong><?=$_SESSION['quan'];?></strong> ks</br>
-		Datum: <strong><?=$_SESSION['date'];?> </strong></br>
+	<div class="center-center">
+		<div class="row">
+
+			<div class="col-md-12 text-white text-center">
+				Jméno: <strong><?=$_SESSION['fullname'];?></strong> </br>
+				Položka: <strong><?=$_SESSION['nameitem'];?></strong> </br>
+				Počet: <strong><?=$_SESSION['quan'];?></strong> ks</br>
+				Datum: <strong><?=$_SESSION['date'];?> </strong></br>
+			</div>
 		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-12">
-			<button class='trigg' onclick="location.href='home.php'">DASHBOARD</button>
-			<button class='trigg' onclick="location.href='form.php'">Přidat další položku</button>
-			<button class='trigg' onclick="location.href='reset.php'">Reset</button>
+		<div class="row">
+			<div class="col-md-12">
+				<button class='trigg' onclick="location.href='home.php'">Dashboard</button>
+				<button class='trigg' id="modal-btn">Přidat další položku</button>
+				<button class='trigg' onclick="location.href='reset.php'">Vrátit krok</button>
+			</div>
 		</div>
 	</div>
 </div>
@@ -106,3 +108,4 @@ mysqli_close($conn);
 
 </body>
 </html>
+<script type="text/javascript" src="script.js"></script>

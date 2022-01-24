@@ -1,6 +1,6 @@
 <?php
 session_start();
-$conn = mysqli_connect("localhost","root","root","depot");
+$conn = mysqli_connect("localhost", "root", "root", "depot");
 if($conn === false){
 	die("ERROR: Could not connect." . mysqli_connect_error());
 }
@@ -16,11 +16,11 @@ echo"
 
 echo "<table id='summary' class='rounded-bottom'>
 <tr>
-<div class='tab1'><th><img src='img/wood.png' class='icons'></th></div>
-<div class='tab2'><th><img src='img/marble.png' class='icons'></th></div>
-<div class='tab3'><th><img src='img/materials.png' class='icons'></th></div>
-<div class='tab4'><th><img src='img/tubes.png' class='icons'></th></div>
-<div class='tab5'><th><img src='img/ore.png' class='icons'></th></div>
+<div class='tab1'><th><small>Dřevo</small><img src='img/wood.png' class='icons'></th></div>
+<div class='tab2'><th><small>Hliník</small><img src='img/ore.png' class='icons'></th></div>
+<div class='tab3'><th><small>Mramor</small><img src='img/marble.png' class='icons'></th></div>
+<div class='tab4'><th><small>Olovo</small><img src='img/materials.png' class='icons'></th></div>
+<div class='tab5'><th><small>Železo</small><img src='img/tubes.png' class='icons'></th></div>
 
 </tr>
 	";
