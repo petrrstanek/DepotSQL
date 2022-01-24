@@ -206,8 +206,9 @@ echo "</table></div></div>";
 echo "
 
 	<div class='col-md-3'>
+	<button id='modal-btn' class='trigg'>Přidat Položku</button>
 		<button id='modal-btn-remove' class='trigg'>Odebrat Položku</button>
-<button id='modal-btn' class='trigg'>Přidat Položku</button>
+
 			
 ";
 echo "</div></div></div>";

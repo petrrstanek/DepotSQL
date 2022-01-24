@@ -19,24 +19,29 @@ if (!isset($_SESSION['loggedin'])) {
 }
 ?>
 <header id="nav">
-	<div class="brand">
-		Sklad Depot s.r.o
-	</div>
-
-	<nav class="navbar">
-
-		<div class="nav-container">
-
-
-			<div class="member">
-				<a href="profile.php"><?= $_SESSION['name'] ?></a>
-
-			</div>
-			<div class="log"><a href="index.html"><i class="fas fa-sign-out-alt" style="font-size: 35px;"></i> Log Out</a>
+	<nav class="navbar navbar-expand-sm navbar-light bg-light">
+		<div class="container">
+			<a href="home.php" class="navbar-brand">Sklad Depot s.r.o</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarCollapse">
+				<ul class="navbar-nav ms-auto">
+					<li class="nav-item">
+						<a href="profile.php" class="nav-link">
+							<i class="fas fa-user" style="font-size: 35px;"></i>
+					<?= $_SESSION['email']; ?>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="index.html" class="nav-link logout">
+							<i class="fas fa-sign-out-alt" style="font-size: 35px;"></i>
+							Odhlásit
+						</a>
+					</li>
+				</ul>
 			</div>
 		</div>
-
-
 	</nav>
 </header>
 
