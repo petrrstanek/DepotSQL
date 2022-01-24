@@ -11,8 +11,7 @@ if (!isset($_SESSION['loggedin'])) {
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport"
-				content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" href="bootstrap.css">
 	<link rel="stylesheet" href="bootstrap.min.js">
@@ -24,7 +23,7 @@ if (!isset($_SESSION['loggedin'])) {
 	<nav class="navbar navbar-expand-sm navbar-light bg-light">
 		<div class="container">
 			<a href="home.php" class="navbar-brand">Sklad Depot s.r.o</a>
-			<button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 			<div class="collapse navbar-collapse" id="navbarCollapse">
@@ -32,7 +31,7 @@ if (!isset($_SESSION['loggedin'])) {
 					<li class="nav-item">
 						<a href="profile.php" class="nav-link">
 							<i class="fas fa-user" style="font-size: 35px;"></i>
-					<?= $_SESSION['email'];?>
+					<?= $_SESSION['email']; ?>
 						</a>
 					</li>
 					<li class="nav-item">
@@ -48,7 +47,7 @@ if (!isset($_SESSION['loggedin'])) {
 </header>
 
 <div class="container">
-	<div class="row pt-5">
+	<div class="row pad">
 		<div class="col-md-6">
 			<img src="img/avatar.png" class="img-fluid">
 		</div>
@@ -61,6 +60,8 @@ if (!isset($_SESSION['loggedin'])) {
 				<div class="profile-data"> Heslo: <?=$_SESSION['password']?></div>
 			</div>
 		</div>
+		<button onclick="location.href='attendance'">Docházka</button>
+		<button onclick="location.href='user_record.php'">Moje záznamy</button>
 		<button class="back" type="button" onclick="location.href='home.php'">Zpět</button>
 	</div>
 	<h1 class="display-3 text-center pb-5">Vaše provedené záznamy</h1>
@@ -77,7 +78,7 @@ if (!isset($_SESSION['loggedin'])) {
 session_start();
 
 $conn = mysqli_connect("localhost", "root", "root", "depot");
-
+/*$conn = mysqli_connect("127.0.0.1", "portfolioapps.cz", "9ob88eWJq9ie", "portfolioappscz1")*/;
 if(mysqli_connect_errno()){
 echo "Failed connect " . mysqli_connect_errno();
 }
@@ -102,6 +103,7 @@ while($row = mysqli_fetch_array($record_user)){
 	echo "<td>" . number_format($row['quantity_item'], '0',',','.' . "ks" . "</td>");
 	echo "<td>" . $row['date_added'] . "</td>";
 }
-echo "</table></div></div>"
+echo "</table></div></div>";
 
+include("inventory.php");
 ?>

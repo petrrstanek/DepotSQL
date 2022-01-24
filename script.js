@@ -99,3 +99,37 @@ emailRemove.disabled = true;
 const table = document.querySelector('.record-t-style');
 table.scrollTop = table.scrollHeight;
 console.log(table);
+
+//Sumbit Record
+function sumbit_record(){
+  //Načtení dat z formuláře
+  const formData = document.querySelector('.form-data');
+  const fetchData = new FormData();
+
+  //Vložení dat do objektu pomocí loopu
+  for (let i = 0; i < formData.length; i++){
+    fetchData.append(formData[i].name, formData[i].value);
+  }
+  const btnSumbit = document.getElementById('button-add');
+  btnSumbit.disabled = true;
+
+  //Žádost o poslání dat na server
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', 'add.php');
+  xhr.send(fetchData);
+
+  xhr.onreadystatechange = function(){
+    if(xhr.readyState == 4 && xhr.status == 200){
+      btnSumbit.disabled = false;
+      let response = JSON.parse(xhr.responseText);
+
+      if(response.success != ''){
+        const form = document.getElementById('form-add');
+        form.reset();
+
+        const span = document.getElementById('message-box');
+        span.innerHTML = response.success;
+      }
+    }
+  }
+}

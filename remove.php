@@ -49,6 +49,7 @@ if (!isset($_SESSION['loggedin'])) {
 session_start();
 /* Připojení k databázi */
 $conn = mysqli_connect("localhost", "root", "root", "depot");
+/*$conn = mysqli_connect("127.0.0.1", "portfolioapps.cz", "9ob88eWJq9ie", "portfolioappscz1")*/;
 if ($conn === false) {
 	die("ERROR: Could not connect." . mysqli_connect_error());
 }
@@ -78,7 +79,8 @@ while ($row = mysqli_fetch_array($summary)) {
 
 	//Najde položku ve skladě a porovná jestli je jí dostatek pro výdej
 	if ($arrayitem === $name_item) {
-		if ($arraysum <= 0) {
+		$positive_quan = $quantity_item * -1;
+		if ($arraysum <= 0 || $positive_quan > $arraysum) {
 			echo "<h1 class='whitening pad'>Bohužel ve skladu není dostatek položek</h1>";
 			echo "
 <div class='btn-neg-val'>

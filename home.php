@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="cs-CZ">
 <head>
@@ -10,8 +8,6 @@
 	<link rel="stylesheet" href="style.css">
 	<!-- JavaScript Bundle with Popper -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
-
 	<title>DASHBOARD</title>
 </head>
 <body onload="updateTime()">
@@ -63,14 +59,9 @@ $email = $_SESSION['email'];
 
 <div class="container text-center pad">
 	<h1>Evidence skladových zásob</h1>
-
-
 </div>
-<!--<button id='modal-btn-remove' class='trigg'>Odebrat Položku</button>
-<button id='modal-btn' class='trigg'>Přidat Položku</button>-->
 
-<!-- FORM ADD -->    <!--<div class="test"><? /*=$_SESSION['ids']*/ ?></div>
-<div class="test2"><? /*=$_SESSION['num']*/ ?></div>-->
+<!-- FORM ADD -->
 
 <div id="form-modal" class="modal">
 	<div class="modal-content">
@@ -79,34 +70,29 @@ $email = $_SESSION['email'];
 				<h4 class="whitening">Příjem materiálu</h4>
 				<span class="close">&times</span>
 			</div>
-			<?php if(!empty($success_message)){?>
+			<form id="form-add">
 				<div class="alert alert-success">
-					<strong><?=$success_message?>
-					</strong></br>
-					<hr>
-
+					<span id="message-box"></span>
 				</div>
-			<?php }?>
 
-			<form action="add.php" method="post">
 				Zaměstanec: <br/>
-				<input type="text" id="email" value="<?= $_SESSION['fname'] . " " . $_SESSION['lname'] ?>"
+				<input type="text" class="form-data" id="email" value="<?= $_SESSION['fname'] . " " . $_SESSION['lname'] ?>"
 							 name="full_name_emp"></br>
 				Název Materiálu: <br/>
-				<!--	<input type="text" name="name_item"></br>-->
-				<select id="material" name="name_item">
-					<option value="Dřevo">Dřevo</option>
-					<option value="Mramor">Mramor</option>
+				<select id="material" name="name_item" class="form-data text-white">
+					<option value="" selected="selected"> --- Vyberte Materiál ---</option>
+					<option value="Dřevo" name="wood">Dřevo</option>
+					<option value="Mramor" name="marble">Mramor</option>
 					<option value="Olovo">Olovo</option>
 					<option value="Železo">Železo</option>
 					<option value="Hliník">Hliník</option>
 				</select></br>
 				Počet Kusů: <br/>
-				<input type="number" min="0" name="quantity_item" class="num"></br>
+				<input type="number" min="0" name="quantity_item" class="num form-data text-white"></br>
 				Datum Přidání:</br>
 				<!--<input type="text" name="date_added"></br>-->
-				<input type="text" name="date_added" value="" id="date"></br>
-				<button type="sumbit" value="Vložit" style="width: 100%"> Vložit</button>
+				<input type="text" name="date_added" value="" id="date" class="form-data"></br>
+				<button type="button" value="Vložit" id="button-add" onclick="sumbit_record(); return false;" style="width: 100%"> Vložit</button>
 				</br>
 				<span class="time-form">A</span>
 			</form>
@@ -163,7 +149,7 @@ $email = $_SESSION['email'];
 
 session_start();
 $conn = mysqli_connect("localhost", "root", "root", "depot");
-
+/*$conn = mysqli_connect("127.0.0.1", "portfolioapps.cz", "9ob88eWJq9ie", "portfolioappscz1")*/;
 if (mysqli_connect_errno()) {
 	echo "Failed to connect to MySQL:" . mysqli_connect_error();
 }

@@ -5,6 +5,11 @@ $db_user = 'root';
 $db_pass = 'root';
 $db_name = 'signup';
 
+/*$db_host = "127.0.0.1";
+$db_username = "portfolioapp.cz";
+$db_password = "9ob88eWJq9ie";
+$db_name = "portfolioappscz2";*/
+
 $con = mysqli_connect($db_host, $db_user, $db_pass, $db_name);
 if(mysqli_connect_errno()){
 	die('Failed to connect to MySQL:' . mysqli_connect_error());
