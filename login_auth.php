@@ -7,7 +7,7 @@ $db_password = "root";
 $db_name = "signup";
 
 /*$db_host = "127.0.0.1";
-$db_username = "portfolioapp.cz";
+$db_username = "portfolioapps.cz";
 $db_password = "9ob88eWJq9ie";
 $db_name = "portfolioappscz2";*/
 

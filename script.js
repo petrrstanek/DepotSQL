@@ -1,4 +1,4 @@
-// Zabrání opětovnému vkládání dat do databáze F5tkou
+// Zabrání opětovnému vkládání inputů
 if (window.history.replaceState) {
   window.history.replaceState(null, null, window.location.href);
 }
@@ -96,16 +96,19 @@ const emailRemove = document.getElementById('email-remove');
 emailRemove.disabled = true;
 
 //Scroll-Bottom
-const table = document.querySelector('.record-t-style');
-table.scrollTop = table.scrollHeight;
-console.log(table);
+window.addEventListener('load', (e) => {
+  const table = document.querySelector('.ev-style');
+  table.scrollTop = table.scrollHeight;
+})
+
 
 //Sumbit Record
-function sumbit_record(){
+/*function sumbit_record(){
   //Načtení dat z formuláře
   const formData = document.querySelector('.form-data');
-  const fetchData = new FormData();
+  const fetchData = new FormData();*/
 
+/*
   //Vložení dat do objektu pomocí loopu
   for (let i = 0; i < formData.length; i++){
     fetchData.append(formData[i].name, formData[i].value);
@@ -133,3 +136,22 @@ function sumbit_record(){
     }
   }
 }
+*/
+
+//Roll inventáře
+function roll() {
+  const inventory = document.querySelector('.status-t-style');
+  const btnRoll = document.querySelector('.btn-roll');
+  const bodyProfile = document.querySelector('.transform-body');
+  inventory.classList.toggle('active');
+  bodyProfile.classList.toggle('active');
+}
+
+const rolls = document.querySelectorAll('.trigg');
+console.log(rolls)
+
+
+
+
+
+

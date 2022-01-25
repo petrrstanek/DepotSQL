@@ -8,7 +8,7 @@ if (!isset($_SESSION['loggedin'])) {
 
 session_start();
 $conn = mysqli_connect("localhost", "root", "root", "depot");
-/*$conn = mysqli_connect("127.0.0.1", "portfolioapps.cz", "9ob88eWJq9ie", "portfolioappscz1")*/;
+/*$conn = mysqli_connect("127.0.0.1", "portfolioapps.cz", "9ob88eWJq9ie", "portfolioappscz1");*/
 if ($conn === false) {
 	die("ERROR: Could not connect." . mysqli_connect_error());
 }
@@ -27,30 +27,8 @@ $_SESSION['fullname'] = $full_name_emp;
 $_SESSION['nameitem'] = $name_item;
 $_SESSION['quan'] = $quantity_item;
 $_SESSION['date'] = $datum;
-
-
-/* Vložení dat do SQL */
-$sql = "INSERT INTO resources VALUES
-        ( null ,'$id', '$full_name_emp', '$name_item', '$quantity_item', '$datum')";
-
-
-/* CATCH SUCCESFUL/ERROR */
-if (mysqli_query($conn, $sql)) {
-
-	$last_id = mysqli_insert_id($conn);
-	$_SESSION['lastid'] = $last_id;
-/*	echo "<h1 class='whitening'>
-  Úspěšně jste vložili položku:
-  </h1>";*/
-	 $success = "HALUZ";
-} else {
-	echo "ERROR: Hush sorry $sql."
-		 . mysqli_error($conn);
-}
-
-mysqli_close($conn);
-
-/*<!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta http-equiv="Cache-control" content="no-cache">
@@ -75,7 +53,7 @@ mysqli_close($conn);
 					<li class="nav-item">
 						<a href="profile.php" class="nav-link">
 							<i class="fas fa-user" style="font-size: 35px;"></i>
-					<?= $_SESSION['email']; */?><!--
+					<?= $_SESSION['email'];?>
 						</a>
 					</li>
 					<li class="nav-item">
@@ -89,20 +67,17 @@ mysqli_close($conn);
 		</div>
 	</nav>
 </header>
--->
 
 
-
-<!--
 <div class="container">
 	<div class="center-center">
 		<div class="row">
 
 			<div class="col-md-12 text-white text-center">
-				Jméno: <strong><?/*=$_SESSION['fullname'];*/?></strong> </br>
-				Položka: <strong><?/*=$_SESSION['nameitem'];*/?></strong> </br>
-				Počet: <strong><?/*=$_SESSION['quan'];*/?></strong> ks</br>
-				Datum: <strong><?/*=$_SESSION['date'];*/?> </strong></br>
+				Jméno: <strong><?=$_SESSION['fullname'];?></strong> </br>
+				Položka: <strong><?=$_SESSION['nameitem'];?></strong> </br>
+				Počet: <strong><?=$_SESSION['quan'];?></strong> ks</br>
+				Datum: <strong><?=$_SESSION['date'];?> </strong></br>
 			</div>
 		</div>
 		<div class="row">
@@ -119,4 +94,27 @@ mysqli_close($conn);
 
 </body>
 </html>
-<script type="text/javascript" src="script.js"></script>-->
+<script type="text/javascript" src="script.js"></script>
+
+
+<?php
+/* Vložení dat do SQL */
+$sql = "INSERT INTO resources VALUES
+        ( null ,'$id', '$full_name_emp', '$name_item', '$quantity_item', '$datum')";
+
+
+/* CATCH SUCCESFUL/ERROR */
+if (mysqli_query($conn, $sql)) {
+
+	$last_id = mysqli_insert_id($conn);
+	$_SESSION['lastid'] = $last_id;
+	echo "<h1 class='whitening'>
+  Úspěšně jste vložili položku:
+  </h1>";
+} else {
+	echo "ERROR: Hush sorry $sql."
+		 . mysqli_error($conn);
+}
+
+mysqli_close($conn);
+?>

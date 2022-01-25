@@ -42,17 +42,14 @@ button:hover {
 }
 th{
 	font-size: 20px;
-	padding-bottom: 10px;
+	padding: 10px;
 
 }
 td{
 	border-bottom: 1px solid white;
 	padding: 10px;
 }
-tr{
 
-	padding: 20px;
-}
 #summary{
 	text-align: center;
 	width: 100%;
@@ -76,9 +73,6 @@ input, #material{
 .select-items{
 	background-color: green;
 }
-h1{
-	margin-top: 50px;
-}
 
 .nav-container{
 	display: flex;
@@ -96,8 +90,6 @@ h1{
 	z-index: 1;
 	transform: translate(0%, 0%);
 }
-
-
 
 a{
 	text-decoration: none;
@@ -235,28 +227,13 @@ form{
 
 .profile-data{
 	padding-bottom: 20px;
-	font-size: 25px;
+	font-size: 18px;
 	color: white;
 
 }
 
 .container-fluid{
 	margin-top: 40px;
-}
-
-.back{
-	margin-top: 100px;
-}
-
-.test{
-
-}
-
-th, td{
-
-}
-tr{
-	padding: 10px!important;
 }
 
 .ev-style{
@@ -277,10 +254,11 @@ tr{
 	position: absolute;
 	top: 49px;
 	overflow: scroll;
-	height: 140px;
+	height: 0px;
 	left: 50%;
 	width: 65%;
 	transform: translateX(-50%);
+	transition: height 0.6s;
 }
 .icons{
 	width: 20px;
@@ -317,5 +295,53 @@ tr{
 	margin-bottom: 30px;
 }
 
+.roll{
+	border-radius: 0px;
+	background-color: transparent;
+	border: 0;
+	box-shadow: none;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+}
+
+.status-t-style.active{
+	height: 102px;
+}
+.transform-body.active{
+	transform: translateY(70px);
+}
+.transform-body{
+	transition: transform 0.6s;
+}
+.arrow{
+	display: block;
+	height: 13px;
+	width: 13px;
+	transform: rotate(45deg);
+
+}
+.arrow::before{
+	content: "";
+	color: #1a1e21;
+	border: 1.5px solid black;
+}
+.arrow::after{
+	content: "";
+	border: 1.5px solid black;
+	display: block;
+	transform: rotate(-45deg);
+}
+
+.depot-t-style{
+	position: relative;
+	top: -20px;
+}
+
+.thead{
+	position: sticky; top: 0;
+	background-color: rgb(87, 148, 204);
+	border: 3px solid white!important;
+}
 
 

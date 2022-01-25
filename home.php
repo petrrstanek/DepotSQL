@@ -4,10 +4,11 @@
 	<meta http-equiv="Cache-control" content="no-cache">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="bootstrap.css">
 	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="bootstrap.css">
+
 	<!-- JavaScript Bundle with Popper -->
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
 	<title>DASHBOARD</title>
 </head>
 <body onload="updateTime()">
@@ -56,6 +57,11 @@ $email = $_SESSION['email'];
 		</div>
 	</nav>
 </header>
+<div class="container">
+	<?php
+	include('depot_status.php');
+	?>
+</div>
 
 <div class="container text-center pad">
 	<h1>Evidence skladových zásob</h1>
@@ -70,7 +76,7 @@ $email = $_SESSION['email'];
 				<h4 class="whitening">Příjem materiálu</h4>
 				<span class="close">&times</span>
 			</div>
-			<form id="form-add">
+			<form action="add.php" method="POST" id="form-add">
 				<div class="alert alert-success">
 					<span id="message-box"></span>
 				</div>
@@ -92,7 +98,7 @@ $email = $_SESSION['email'];
 				Datum Přidání:</br>
 				<!--<input type="text" name="date_added"></br>-->
 				<input type="text" name="date_added" value="" id="date" class="form-data"></br>
-				<button type="button" value="Vložit" id="button-add" onclick="sumbit_record(); return false;" style="width: 100%"> Vložit</button>
+				<button type="sumbit" value="Vložit" id="button-add" style="width: 100%"> Vložit</button>
 				</br>
 				<span class="time-form">A</span>
 			</form>
@@ -138,7 +144,7 @@ $email = $_SESSION['email'];
 
 
 <script src="https://kit.fontawesome.com/09be11f3c3.js" crossorigin="anonymous"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 </body>
 </html>
@@ -149,7 +155,7 @@ $email = $_SESSION['email'];
 
 session_start();
 $conn = mysqli_connect("localhost", "root", "root", "depot");
-/*$conn = mysqli_connect("127.0.0.1", "portfolioapps.cz", "9ob88eWJq9ie", "portfolioappscz1")*/;
+/*$conn = mysqli_connect("127.0.0.1", "portfolioapps.cz", "9ob88eWJq9ie", "portfolioappscz1");*/
 if (mysqli_connect_errno()) {
 	echo "Failed to connect to MySQL:" . mysqli_connect_error();
 }
@@ -166,14 +172,17 @@ echo "
 	<div class='col-md-9 ev-style'>
 		<div class='table-ev'>
 			<table class='record-t-style'>
-				<tr style='position: sticky; top: 0; background-color: rgb(87, 148, 204); border-bottom: 2px solid white;'>
+			<thead>
+			<tr class='thead'>
 				<th>ID_Záz</th>
 				<th>ID_Uži</th>
 				<th>Jméno</th>
 				<th></i>Materiál</th>
 				<th></i>Počet</th>
 				<th></i>Datum</th>
-				</tr>";
+				</tr>
+			</thead>
+				";
 
 while ($row = mysqli_fetch_array($result)) {
 	$_SESSION['rowid'] = $row['id_record'];
@@ -190,22 +199,18 @@ while ($row = mysqli_fetch_array($result)) {
 }
 echo "</table></div></div>";
 echo "
-
-	<div class='col-md-3'>
+<div class='col-md-3'>
 	<button id='modal-btn' class='trigg'>Přidat Položku</button>
-		<button id='modal-btn-remove' class='trigg'>Odebrat Položku</button>
-
-			
+	<button id='modal-btn-remove' class='trigg mt-5'>Odebrat Položku</button>
 ";
 echo "</div></div></div>";
 
 /*STAV SKLADU*/
-include("depot_status.php");
+
 echo "
 <div class='container text-center pt-4'>
-<span class='cur-time'></span>
+	<span class='cur-time'></span>
 </div>
-
 ";
 mysqli_close($conn)
 ?>

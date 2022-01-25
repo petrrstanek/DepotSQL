@@ -14,7 +14,6 @@ if (!isset($_SESSION['loggedin'])) {
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<link rel="stylesheet" href="bootstrap.css">
-	<link rel="stylesheet" href="bootstrap.min.js">
 	<link rel="stylesheet" href="style.css">
 	<title>Profile</title>
 </head>
@@ -46,64 +45,50 @@ if (!isset($_SESSION['loggedin'])) {
 	</nav>
 </header>
 
-<div class="container">
-	<div class="row pad">
-		<div class="col-md-6">
-			<img src="img/avatar.png" class="img-fluid">
-		</div>
-		<div class="col-md-6">
-			<div class="container-fluid">
-				<div class="profile-data">	ID: <?= $_SESSION['id']?></div>
-				<div class="profile-data">	Jméno: <?= $_SESSION['fname']?></div>
-				<div class="profile-data">	Příjmení: <?=$_SESSION['lname']?></div>
-				<div class="profile-data">	Email: <?=$_SESSION['email']?></div>
-				<div class="profile-data"> Heslo: <?=$_SESSION['password']?></div>
+<div class="transform-body">
+	<div class="container d-flex justify-content-center pt-3">
+		<button class='roll' onclick='roll()'>
+			<h1 class="display-4">Můj Profil</h1>
+			<i class='fas fa-angle-double-down' style="font-size: 70px; color: white; margin-left: 30px; margin-bottom: 7px"></i>
+						<!--<div class="container-arrow">
+							<div class="arrow"></div>
+						</div>-->
+		</button>
+	</div>
+	<div class="container">
+		<div class="row pt-3">
+			<div class="col-md-6 justify-content-center d-flex align-items-center">
+				<img src="img/user.png" class="img-fluid" style="width: 290px;">
+			</div>
+			<div class="col-md-6">
+				<div class="container-fluid text-center text-md-start">
+					<div class="profile-data">	ID: <?= $_SESSION['id']?></div>
+					<div class="profile-data">	Jméno: <?= $_SESSION['fname']?></div>
+					<div class="profile-data">	Příjmení: <?=$_SESSION['lname']?></div>
+					<div class="profile-data">	Email: <?=$_SESSION['email']?></div>
+					<div class="profile-data"> Heslo: <?=$_SESSION['password']?></div>
+				</div>
+			</div>
+			<div class="profile-buttons text-center pt-5 d-flex justify-content-center">
+				<button class='trigg'onclick="location.href='attendance.php'">Docházka</button>
+				<button class="trigg mx-5" onclick="location.href='user_record.php'">Moje záznamy</button>
+				<button class="trigg" type="button" onclick="location.href='home.php'">Zpět</button>
 			</div>
 		</div>
-		<button onclick="location.href='attendance'">Docházka</button>
-		<button onclick="location.href='user_record.php'">Moje záznamy</button>
-		<button class="back" type="button" onclick="location.href='home.php'">Zpět</button>
 	</div>
-	<h1 class="display-3 text-center pb-5">Vaše provedené záznamy</h1>
 </div>
 
 <script src="https://kit.fontawesome.com/09be11f3c3.js" crossorigin="anonymous"></script>
 <script>
 	<?php require_once("script.js");?>
 </script>
+<script src="bootstrap.min.js"></script>
+<script type="text/javascript" src="script.js"></script>
 </body>
 </html>
 
 <?php
 session_start();
-
-$conn = mysqli_connect("localhost", "root", "root", "depot");
-/*$conn = mysqli_connect("127.0.0.1", "portfolioapps.cz", "9ob88eWJq9ie", "portfolioappscz1")*/;
-if(mysqli_connect_errno()){
-echo "Failed connect " . mysqli_connect_errno();
-}
-
-$record_user = mysqli_query($conn, "SELECT * FROM resources WHERE id={$_SESSION['id']}");
-echo"<div class='container'><div class='profile-t'><table class='profile-t-style'>
-<tr style='position:sticky; top: 0; background-color: #5794cc;'>
-<th> ID_záznamu</th>
-<th> ID_uživatele</th>
-<th>Celé jméno</th>
-<th>Název Materiálu</th>
-<th>Počet</th>
-<th>Datum přidání</th>
-</tr>";
-
-while($row = mysqli_fetch_array($record_user)){
-	echo "<tr>";
-	echo "<td>" . $row['id_record'] . "</td>";
-	echo "<td>"  . $row['id'] . "</td>";
-	echo "<td>" . $row['full_name_emp'] . "</td>";
-	echo "<td>" . $row['name_item'] . "</td>";
-	echo "<td>" . number_format($row['quantity_item'], '0',',','.' . "ks" . "</td>");
-	echo "<td>" . $row['date_added'] . "</td>";
-}
-echo "</table></div></div>";
-
 include("inventory.php");
 ?>
+

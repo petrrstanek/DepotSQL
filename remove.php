@@ -49,7 +49,7 @@ if (!isset($_SESSION['loggedin'])) {
 session_start();
 /* Připojení k databázi */
 $conn = mysqli_connect("localhost", "root", "root", "depot");
-/*$conn = mysqli_connect("127.0.0.1", "portfolioapps.cz", "9ob88eWJq9ie", "portfolioappscz1")*/;
+/*$conn = mysqli_connect("127.0.0.1", "portfolioapps.cz", "9ob88eWJq9ie", "portfolioappscz1");*/
 if ($conn === false) {
 	die("ERROR: Could not connect." . mysqli_connect_error());
 }
