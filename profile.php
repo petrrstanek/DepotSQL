@@ -46,7 +46,7 @@ if (!isset($_SESSION['loggedin'])) {
 </header>
 
 <div class="transform-body">
-	<div class="container d-flex justify-content-center pt-3">
+	<div class="container d-flex justify-content-center pt-5">
 		<button class='roll' onclick='roll()'>
 			<h1 class="display-4">Můj Profil</h1>
 			<i class='fas fa-angle-double-down' style="font-size: 70px; color: white; margin-left: 30px; margin-bottom: 7px"></i>
@@ -56,7 +56,7 @@ if (!isset($_SESSION['loggedin'])) {
 		</button>
 	</div>
 	<div class="container">
-		<div class="row pt-3">
+		<div class="row pt-1">
 			<div class="col-md-6 justify-content-center d-flex align-items-center">
 				<img src="img/user.png" class="img-fluid" style="width: 290px;">
 			</div>
@@ -69,7 +69,7 @@ if (!isset($_SESSION['loggedin'])) {
 					<div class="profile-data"> Heslo: <?=$_SESSION['password']?></div>
 				</div>
 			</div>
-			<div class="profile-buttons text-center pt-5 d-flex justify-content-center">
+			<div class="profile-buttons text-center pt-4 d-flex justify-content-center">
 				<button class='trigg'onclick="location.href='attendance.php'">Docházka</button>
 				<button class="trigg mx-5" onclick="location.href='user_record.php'">Moje záznamy</button>
 				<button class="trigg" type="button" onclick="location.href='home.php'">Zpět</button>

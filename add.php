@@ -18,7 +18,7 @@ $id = $_SESSION['id'];
 $full_name_emp = $_SESSION['fname'] . " " . $_SESSION['lname'];
 $name_item = $_REQUEST['name_item'];
 $quantity_item = $_REQUEST['quantity_item'];
-$datum = date("d-m-Y H:i:s");
+$datum = date("d.m.Y H:i:s");
 $success = "";
 
 

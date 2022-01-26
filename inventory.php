@@ -13,8 +13,6 @@ echo "
 <div class='row'>
 <div class='col-md-12 status-t-style'>
 <div class='table-status'>
-
-
 ";
 
 echo "<table id='summary' class='rounded-bottom'>
@@ -29,11 +27,7 @@ echo "<table id='summary' class='rounded-bottom'>
 
 while($row = mysqli_fetch_array($inventory)){
 $arraysum = $row['SUM(quantity_item)'];
-
-
 echo "<th>" . $arraysum . "</th>";
-
-
 }
 echo "</table></div></div></div>";
 ?>

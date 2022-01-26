@@ -1,0 +1,12 @@
+<?php
+session_start();
+$conn = mysqli_connect("localhost", "root", "root", "attendance");
+if($conn === false){
+	echo "Failed to connect" . mysqli_connect_error();
+}
+
+$user_att = mysqli_query($conn, "SELECT email, log FROM logs WHERE id_user={$_SESSION['id']}");
+while($row = mysqli_fetch_array($user_att)){
+	echo $row['email'] . "<br>";
+	echo $row['log'] . "<br>";
+}

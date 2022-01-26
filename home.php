@@ -6,15 +6,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="style.css">
 	<link rel="stylesheet" href="bootstrap.css">
-
-	<!-- JavaScript Bundle with Popper -->
-
 	<title>DASHBOARD</title>
 </head>
 <body onload="updateTime()">
-
 <!-- SESSION PRO LOGIN -->
-
 <?php
 session_start();
 header('Expires: Sun, 01 Jan 2014 00:00:00 GMT');
@@ -29,11 +24,10 @@ $email = $_SESSION['email'];
 ?>
 
 <!-- NAVBAR -->
-
 <header id="nav">
 	<nav class="navbar navbar-expand-sm navbar-light bg-light">
 		<div class="container">
-			<a href="home.php" class="navbar-brand">Sklad Depot s.r.o</a>
+			<a href="home.php" class="navbar-brand">depotGistics</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -51,24 +45,23 @@ $email = $_SESSION['email'];
 							Odhlásit
 						</a>
 					</li>
-
 				</ul>
 			</div>
 		</div>
 	</nav>
 </header>
+
+<!-- Widget stav skladu -->
 <div class="container">
 	<?php
 	include('depot_status.php');
 	?>
 </div>
-
-<div class="container text-center pad">
+<div class="container text-center pt-4">
 	<h1>Evidence skladových zásob</h1>
 </div>
 
 <!-- FORM ADD -->
-
 <div id="form-modal" class="modal">
 	<div class="modal-content">
 		<div class="form">
@@ -80,7 +73,6 @@ $email = $_SESSION['email'];
 				<div class="alert alert-success">
 					<span id="message-box"></span>
 				</div>
-
 				Zaměstanec: <br/>
 				<input type="text" class="form-data" id="email" value="<?= $_SESSION['fname'] . " " . $_SESSION['lname'] ?>"
 							 name="full_name_emp"></br>
@@ -105,7 +97,6 @@ $email = $_SESSION['email'];
 			<!--<button onclick="location.href='home.php'">Zpět</button>-->
 		</div>
 	</div>
-
 </div>
 
 <!-- FORM REMOVE -->
@@ -132,40 +123,30 @@ $email = $_SESSION['email'];
 				Počet Kusů: <br/>
 				<input type="number" max="0" name="quantity_item" id="quan" placeholder="Zadej mínusovou hodnotu"></br>
 				Datum Odebrání:</br>
-
 				<input type="text" name="date_added" value="" id="date-remove"></br>
 				<button type="sumbit" value="Vložit" id="remove" style="width:100%"> Odebrat</button>
 				</br>
-
 			</form>
 		</div>
 	</div>
 </div>
-
-
 <script src="https://kit.fontawesome.com/09be11f3c3.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+				integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+				crossorigin="anonymous"></script>
 </body>
 </html>
 
-
 <!-- EVIDENCE -->
 <?php
-
 session_start();
 $conn = mysqli_connect("localhost", "root", "root", "depot");
 /*$conn = mysqli_connect("127.0.0.1", "portfolioapps.cz", "9ob88eWJq9ie", "portfolioappscz1");*/
 if (mysqli_connect_errno()) {
 	echo "Failed to connect to MySQL:" . mysqli_connect_error();
 }
-
 $result = mysqli_query($conn, "SELECT * FROM resources");
-
-
 echo $_SESSION['username'];
-
-
 echo "
 <div class='container'>
 <div class='row pt-5'>
@@ -183,12 +164,10 @@ echo "
 				</tr>
 			</thead>
 				";
-
 while ($row = mysqli_fetch_array($result)) {
 	$_SESSION['rowid'] = $row['id_record'];
 	$_SESSION['fullname'] = $row['full_name_emp'];
 	echo "<tr>";
-
 	echo "<td>" . $row['id_record'] . "</td>";
 	echo "<td>" . "ID: " . $row['id'] . "</td>";
 	echo "<td>" . $row['full_name_emp'] . "</td>";
@@ -204,9 +183,6 @@ echo "
 	<button id='modal-btn-remove' class='trigg mt-5'>Odebrat Položku</button>
 ";
 echo "</div></div></div>";
-
-/*STAV SKLADU*/
-
 echo "
 <div class='container text-center pt-4'>
 	<span class='cur-time'></span>

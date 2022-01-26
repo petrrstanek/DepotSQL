@@ -306,7 +306,7 @@ form{
 }
 
 .status-t-style.active{
-	height: 102px;
+	height: 120px;
 }
 .transform-body.active{
 	transform: translateY(70px);

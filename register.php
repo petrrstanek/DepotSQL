@@ -27,6 +27,9 @@ if(isset($_POST['btnsignup'])){
 	$confirmpassword = trim($_POST['confirmpassword']);
 
 	$isValid = true;
+	$filter = "depotgistics";
+	$compare = strpos($email, $filter);
+
 
 	//Check empty space
 	if($fname == '' || $lname == ' || $email == '|| $password == '' || $confirmpassword == ''){
@@ -38,6 +41,11 @@ if(isset($_POST['btnsignup'])){
 	if($isValid && ($password != $confirmpassword)){
 		$isValid = true;
 		$error_message = "Hesla se neshodují";
+	}
+
+	if($compare == false){
+		$isValid = false;
+		$error_message = "Emailová adresa musí obsahovat @depot.cz";
 	}
 
 	//Email Check
@@ -84,7 +92,7 @@ if(isset($_POST['btnsignup'])){
 </head>
 <body>
 
-<h1>Registruj se v Skladová firma s.r.o</h1>
+<h1>Registruj se v depotGistics s.r.o</h1>
 <div class="form">
 	<form method="post" action="">
 
@@ -111,15 +119,16 @@ if(isset($_POST['btnsignup'])){
 		<input type="text" class="form-control" id="lname" name="lname" required="required" maxlength="80">
 
 		<label for="fname"> Email:</label>
-		<input type="text" class="form-control" id="email" name="email" required="required" maxlength="80">
+		<input type="text" class="form-control" id="email" name="email" required="required" maxlength="80" placeholder="priklad@depotgistics.cz">
 
-		<label for="fname"> Heslo</label>
+		<label for="fname"> Heslo:</label>
 		<input type="password" class="form-control" id="password" name="password" required="required" maxlength="80">
 
-		<label for="fname"> Potvrdit Heslo</label>
+		<label for="fname"> Potvrdit Heslo:</label>
 		<input type="password" class="form-control" id="confirmpassword" name="confirmpassword" onkeyup="" required="required" maxlength="80">
 
-		<button type="submit" name="btnsignup" class="pt-2">Sumbit</button>
+		<button type="submit" name="btnsignup" class="pt-2">Registrovat</button>
+		<br>
 		<a href="index.html">
 			<small class="text-white">Už máte účet? Přihlaste se zde!</small>
 		</a>
