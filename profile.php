@@ -13,15 +13,15 @@ if (!isset($_SESSION['loggedin'])) {
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link rel="stylesheet" href="bootstrap.css">
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="assets/css/bootstrap.css">
+	<link rel="stylesheet" href="assets/css/style.css">
 	<title>Profile</title>
 </head>
 <body>
 <header id="nav">
 	<nav class="navbar navbar-expand-sm navbar-light bg-light">
 		<div class="container">
-			<a href="home.php" class="navbar-brand">Sklad Depot s.r.o</a>
+			<a href="home.php" class="navbar-brand">DEPOTGISTICS</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -58,7 +58,7 @@ if (!isset($_SESSION['loggedin'])) {
 	<div class="container">
 		<div class="row pt-1">
 			<div class="col-md-6 justify-content-center d-flex align-items-center">
-				<img src="img/user.png" class="img-fluid" style="width: 290px;">
+				<img src="assets/img/user.png" class="img-fluid" style="width: 290px;">
 			</div>
 			<div class="col-md-6">
 				<div class="container-fluid text-center text-md-start">
@@ -79,11 +79,9 @@ if (!isset($_SESSION['loggedin'])) {
 </div>
 
 <script src="https://kit.fontawesome.com/09be11f3c3.js" crossorigin="anonymous"></script>
-<script>
-	<?php require_once("script.js");?>
-</script>
-<script src="bootstrap.min.js"></script>
-<script type="text/javascript" src="script.js"></script>
+
+<script src="assets/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="assets/js/script.js"></script>
 </body>
 </html>
 

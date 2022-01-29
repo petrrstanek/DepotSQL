@@ -4,30 +4,27 @@
 	<meta http-equiv="Cache-control" content="no-cache">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="style.css">
-	<link rel="stylesheet" href="bootstrap.css">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="assets/css/bootstrap.css">
 	<title>DASHBOARD</title>
 </head>
 <body onload="updateTime()">
 <!-- SESSION PRO LOGIN -->
 <?php
 session_start();
-header('Expires: Sun, 01 Jan 2014 00:00:00 GMT');
 header('Cache-Control: no-store, no-cache, must-revalidate');
 header('Cache-Control: post-check=0, pre-check=0', FALSE);
 header('Pragma: no-cache');
-if (!isset($_SESSION['loggedin'])) {
-	header('Location: index.html');
-	exit;
-}
 $email = $_SESSION['email'];
+$php_item = $_SESSION['phpitem'];
+$php_quan = $_SESSION['phpquan'];
 ?>
 
 <!-- NAVBAR -->
 <header id="nav">
 	<nav class="navbar navbar-expand-sm navbar-light bg-light">
 		<div class="container">
-			<a href="home.php" class="navbar-brand">depotGistics</a>
+			<a href="home.php" class="navbar-brand">DEPOTGISTICS</a>
 			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -69,16 +66,18 @@ $email = $_SESSION['email'];
 				<h4 class="whitening">Příjem materiálu</h4>
 				<span class="close">&times</span>
 			</div>
-			<form action="add.php" method="POST" id="form-add">
-				<div class="alert alert-success">
+			<form id="form-add">
+
+				<div class="alert alert-success" style="display: none;">
 					<span id="message-box"></span>
 				</div>
+
 				Zaměstanec: <br/>
 				<input type="text" class="form-data" id="email" value="<?= $_SESSION['fname'] . " " . $_SESSION['lname'] ?>"
 							 name="full_name_emp"></br>
 				Název Materiálu: <br/>
 				<select id="material" name="name_item" class="form-data text-white">
-					<option value="" selected="selected"> --- Vyberte Materiál ---</option>
+					<option selected="selected" disabled="disabled"> --- Vyberte Materiál ---</option>
 					<option value="Dřevo" name="wood">Dřevo</option>
 					<option value="Mramor" name="marble">Mramor</option>
 					<option value="Olovo">Olovo</option>
@@ -90,11 +89,9 @@ $email = $_SESSION['email'];
 				Datum Přidání:</br>
 				<!--<input type="text" name="date_added"></br>-->
 				<input type="text" name="date_added" value="" id="date" class="form-data"></br>
-				<button type="sumbit" value="Vložit" id="button-add" style="width: 100%"> Vložit</button>
+				<button type="sumbit" onclick="sumbit_record(); return false;" value="Vložit" id="button-add" style="width: 100%"> Vložit</button>
 				</br>
-				<span class="time-form">A</span>
 			</form>
-			<!--<button onclick="location.href='home.php'">Zpět</button>-->
 		</div>
 	</div>
 </div>
@@ -107,13 +104,16 @@ $email = $_SESSION['email'];
 				<h4 class="whitening">Výdej materiálu</h4>
 				<span class="close-remove">&times</span>
 			</div>
-			<form action="remove.php" method="post">
+			<form id="remove">
+				<div class="alert alert-success" style="display: none;" id="alert">
+					<span id="message-box-remove"></span>
+				</div>
 				Zaměstanec: <br/>
-				<input type="text" id="email-remove" value="<?= $_SESSION['fname'] . " " . $_SESSION['lname'] ?>"
+				<input type="text" class="data-remove" id="email-remove" value="<?= $_SESSION['fname'] . " " . $_SESSION['lname'] ?>"
 							 name="full_name_emp"></br>
 				Název Materiálu: <br/>
 				<!--<input type="text" name="name_item" id="quan"></br>-->
-				<select id="material" name="name_item">
+				<select id="material" name="name_item" class="data-remove">
 					<option value="Dřevo">Dřevo</option>
 					<option value="Mramor">Mramor</option>
 					<option value="Olovo">Olovo</option>
@@ -121,10 +121,10 @@ $email = $_SESSION['email'];
 					<option value="Hliník">Hliník</option>
 				</select></br>
 				Počet Kusů: <br/>
-				<input type="number" max="0" name="quantity_item" id="quan" placeholder="Zadej mínusovou hodnotu"></br>
+				<input type="number" max="0" class="data-remove" name="quantity_item" id="quan" placeholder="Zadej mínusovou hodnotu"></br>
 				Datum Odebrání:</br>
-				<input type="text" name="date_added" value="" id="date-remove"></br>
-				<button type="sumbit" value="Vložit" id="remove" style="width:100%"> Odebrat</button>
+				<input type="text" name="date_added" value="" class="data-remove" id="date-remove"></br>
+				<button type="sumbit" value="Vložit" onclick="sumbit_record_remove(); return false;" id="remove" style="width:100%"> Odebrat</button>
 				</br>
 			</form>
 		</div>
@@ -140,8 +140,8 @@ $email = $_SESSION['email'];
 <!-- EVIDENCE -->
 <?php
 session_start();
-$conn = mysqli_connect("localhost", "root", "root", "depot");
-/*$conn = mysqli_connect("127.0.0.1", "portfolioapps.cz", "9ob88eWJq9ie", "portfolioappscz1");*/
+/*$conn = mysqli_connect("localhost", "root", "root", "depot");*/
+$conn = mysqli_connect("127.0.0.1", "portfolioapps.cz", "9ob88eWJq9ie", "portfolioappscz1");
 if (mysqli_connect_errno()) {
 	echo "Failed to connect to MySQL:" . mysqli_connect_error();
 }
@@ -190,7 +190,11 @@ echo "
 ";
 mysqli_close($conn)
 ?>
-<script type="text/javascript" src="script.js"></script>
+<script type="text/javascript">
+</script>
+<script type="text/javascript" src="assets/js/script.js"></script>
+<script src="assets/js/ajax.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
 
 
 

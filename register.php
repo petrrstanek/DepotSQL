@@ -1,14 +1,14 @@
 <?php
 session_start();
-$db_host = 'localhost';
+/*$db_host = 'localhost';
 $db_username = 'root';
 $db_password = 'root';
-$db_name = 'signup';
+$db_name = 'signup';*/
 
-/*$db_host = "127.0.0.1";
+$db_host = "127.0.0.1";
 $db_username = "portfolioapps.cz";
 $db_password = "9ob88eWJq9ie";
-$db_name = "portfolioappscz2";*/
+$db_name = "portfolioappscz2";
 
 $con = mysqli_connect($db_host, $db_username, $db_password, $db_name);
 if(mysqli_connect_errno()){
@@ -45,7 +45,7 @@ if(isset($_POST['btnsignup'])){
 
 	if($compare == false){
 		$isValid = false;
-		$error_message = "Emailová adresa musí obsahovat @depot.cz";
+		$error_message = "Emailová adresa musí obsahovat @depotgistics.cz";
 	}
 
 	//Email Check
@@ -71,9 +71,8 @@ if(isset($_POST['btnsignup'])){
 		 $stmt->bind_param("ssss",$fname,$lname,$email,$password);
 		 $stmt->execute();
 		 $stmt->close();
-
-	   echo '<script> alert("Registrace proběhla úspěšně! Budete přesměrování na přihlašovací stránku")</script>';
-		 header('Location: index.html');
+		 $success_message = "Registrace proběhla úspěšně";
+		 header("Refresh:5; url=https://www.portfolioapps.cz/index.html", true, 303);
 	 }
 }
 ?>
@@ -85,14 +84,14 @@ if(isset($_POST['btnsignup'])){
 	<meta name="viewport"
 				content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<link rel="stylesheet" href="bootstrap.css">
-	<link rel="stylesheet" href="bootstrap.min.js">
-	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="assets/css/bootstrap.css">
+	<link rel="stylesheet" href="assets/js/bootstrap.min.js">
+	<link rel="stylesheet" href="assets/css/style.css">
 	<title>Register</title>
 </head>
 <body>
 
-<h1>Registruj se v depotGistics s.r.o</h1>
+<h1>Registruj se v depotGistics</h1>
 <div class="form">
 	<form method="post" action="">
 
@@ -107,7 +106,7 @@ if(isset($_POST['btnsignup'])){
 		<?php if(!empty($success_message)){ ?>
 
 		<div class="alert alert-success">
-			<strong>Success!</strong><?=$success_message?>
+			<strong><?=$success_message?></strong>
 		</div>
 
 			 <?php } ?>
@@ -127,7 +126,7 @@ if(isset($_POST['btnsignup'])){
 		<label for="fname"> Potvrdit Heslo:</label>
 		<input type="password" class="form-control" id="confirmpassword" name="confirmpassword" onkeyup="" required="required" maxlength="80">
 
-		<button type="submit" name="btnsignup" class="pt-2">Registrovat</button>
+		<button type="submit" name="btnsignup" class="pt-2 w-100">Registrovat</button>
 		<br>
 		<a href="index.html">
 			<small class="text-white">Už máte účet? Přihlaste se zde!</small>

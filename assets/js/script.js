@@ -16,10 +16,13 @@ const close = document.querySelector('.close');
 
 modalBtn.addEventListener('click', () => {
   modal.style.display = "block";
+
 })
 
 close.addEventListener('click', () => {
   modal.style.display = "none";
+  location.reload();
+  return false;
 })
 
 //Modal-Form-remove
@@ -28,8 +31,9 @@ const modalRemove = document.getElementById('form-modal-remove');
 const closeRemove = document.querySelector('.close-remove');
 
 closeRemove.addEventListener('click', () => {
-  console.log('click');
   modalRemove.style.display = "none";
+  location.reload();
+  return false;
 })
 
 btnRemove.addEventListener('click', () => {
@@ -102,41 +106,7 @@ window.addEventListener('load', (e) => {
 })
 
 
-//Sumbit Record
-/*function sumbit_record(){
-  //Načtení dat z formuláře
-  const formData = document.querySelector('.form-data');
-  const fetchData = new FormData();*/
 
-/*
-  //Vložení dat do objektu pomocí loopu
-  for (let i = 0; i < formData.length; i++){
-    fetchData.append(formData[i].name, formData[i].value);
-  }
-  const btnSumbit = document.getElementById('button-add');
-  btnSumbit.disabled = true;
-
-  //Žádost o poslání dat na server
-  const xhr = new XMLHttpRequest();
-  xhr.open('POST', 'add.php');
-  xhr.send(fetchData);
-
-  xhr.onreadystatechange = function(){
-    if(xhr.readyState == 4 && xhr.status == 200){
-      btnSumbit.disabled = false;
-      let response = JSON.parse(xhr.responseText);
-
-      if(response.success != ''){
-        const form = document.getElementById('form-add');
-        form.reset();
-
-        const span = document.getElementById('message-box');
-        span.innerHTML = response.success;
-      }
-    }
-  }
-}
-*/
 
 //Roll inventáře
 function roll() {
@@ -146,9 +116,7 @@ function roll() {
   inventory.classList.toggle('active');
   bodyProfile.classList.toggle('active');
 }
-
 const rolls = document.querySelectorAll('.trigg');
-console.log(rolls)
 
 
 

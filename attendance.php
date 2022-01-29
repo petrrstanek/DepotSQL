@@ -1,6 +1,7 @@
 <?php
 session_start();
-$conn = mysqli_connect("localhost", "root", "root", "attendance");
+/*$conn = mysqli_connect("localhost", "root", "root", "attendance");*/
+$conn = mysqli_connect("127.0.0.1", "portfolioapps.cz", "9ob88eWJq9ie", "portfolioappscz3");
 if($conn === false){
 	echo "Failed to connect" . mysqli_connect_error();
 }

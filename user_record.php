@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-$conn = mysqli_connect("localhost", "root", "root", "depot");
-/*$conn = mysqli_connect("127.0.0.1", "portfolioapps.cz", "9ob88eWJq9ie", "portfolioappscz1");*/
+/*$conn = mysqli_connect("localhost", "root", "root", "depot");*/
+$conn = mysqli_connect("127.0.0.1", "portfolioapps.cz", "9ob88eWJq9ie", "portfolioappscz1");
 if(mysqli_connect_errno()){
 echo "Failed connect " . mysqli_connect_errno();
 }

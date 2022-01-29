@@ -1,15 +1,15 @@
 <?php
 include('conn.php');
 session_start();
-$db_host = "localhost";
+/*$db_host = "localhost";
 $db_username = "root";
 $db_password = "root";
-$db_name = "signup";
+$db_name = "signup";*/
 
-/*$db_host = "127.0.0.1";
+$db_host = "127.0.0.1";
 $db_username = "portfolioapps.cz";
 $db_password = "9ob88eWJq9ie";
-$db_name = "portfolioappscz2";*/
+$db_name = "portfolioappscz2";
 
 $con = mysqli_connect($db_host, $db_username, $db_password, $db_name);
 if (mysqli_connect_errno()) {
@@ -20,7 +20,8 @@ if (!isset($_POST['email'], $_POST['password'])) {
 	exit('ERROR');
 }
 
-$conn = mysqli_connect("localhost", "root", "root", "attendance");
+/*$conn = mysqli_connect("localhost", "root", "root", "attendance");*/
+$conn = mysqli_connect("127.0.0.1", "portfolioapps.cz", "9ob88eWJq9ie", "portfolioappscz3");
 if($conn === false){
 	die("ERROR: Could not connect." . mysqli_connect_error());
 }
